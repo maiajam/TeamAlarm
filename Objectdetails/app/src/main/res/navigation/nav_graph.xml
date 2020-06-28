@@ -14,25 +14,27 @@
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
+        <action
+            android:id="@+id/blank"
+            app:destination="@id/navigation" />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
         android:name="com.maiajam.objectdetails.SecondFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/blankFragment"
-        android:name="com.maiajam.objectdetails.BlankFragment"
-        android:label="fragment_blank"
-        tools:layout="@layout/fragment_blank" >
-        <action
-            android:id="@+id/blank"
-            app:destination="@id/FirstFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_second"/>
+    <navigation android:id="@+id/navigation"
+        app:startDestination="@id/blankFragment">
+        <fragment
+            android:id="@+id/blankFragment2"
+            android:name="com.maiajam.objectdetails.BlankFragment2"
+            android:label="fragment_blank2"
+            tools:layout="@layout/fragment_blank2" />
+        <fragment
+            android:id="@+id/blankFragment"
+            android:name="com.maiajam.objectdetails.BlankFragment"
+            android:label="fragment_blank"
+            tools:layout="@layout/fragment_blank" />
+    </navigation>
 
 </navigation>
