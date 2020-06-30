@@ -6,6 +6,11 @@
     app:startDestination="@id/FirstFragment">
 
     <fragment
+        android:id="@+id/cameraFragment"
+        android:name="com.maiajam.objectdetails.CameraFragment"
+        android:label="fragment_camera"
+        tools:layout="@layout/fragment_camera" />
+    <fragment
         android:id="@+id/FirstFragment"
         android:name="com.maiajam.objectdetails.FirstFragment"
         android:label="@string/first_fragment_label"
@@ -22,8 +27,9 @@
         android:id="@+id/SecondFragment"
         android:name="com.maiajam.objectdetails.SecondFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second"/>
-    <navigation android:id="@+id/navigation"
+        tools:layout="@layout/fragment_second" />
+    <navigation
+        android:id="@+id/navigation"
         app:startDestination="@id/blankFragment">
         <fragment
             android:id="@+id/blankFragment2"
@@ -36,5 +42,6 @@
             android:label="fragment_blank"
             tools:layout="@layout/fragment_blank" />
     </navigation>
+    <action android:id="@+id/action_global_SecondFragment" app:destination="@id/SecondFragment" />
 
 </navigation>
