@@ -192,16 +192,20 @@ public class ObjectDetailsGetterThread extends Thread {
 
     private void checkInEachQuarterVertically(Mat src, int j, int i, int QuarterRow, int QuarterCol, int hint) {
         // y is  for shifting to  the next quarter vertically
-        int x = i++;
-        int y = j++;
+        i++;
+        final int x = i;
+        j++;
+        final int y = j;
         int finalJ = j;
         objectCoordinateGetters[finalJ] = new ObjectCoordinateGetter();
         if (hint == Global.FIRST_POSITION_HINT) {
             observableGetFirstXY = Observable.create(new ObservableOnSubscribe<Integer[]>() {
                 @Override
                 public void subscribe(ObservableEmitter<Integer[]> emitter) throws Exception {
-                    if (objectCoordinateGetters[finalJ] != null)
+                    if (objectCoordinateGetters[finalJ] != null){
                         emitter.onNext(objectCoordinateGetters[finalJ].getFirstXY(src, QuarterRow * y, QuarterCol * x));
+                    }
+
                 }
             });
             observeFirstobjectPosition();
@@ -221,14 +225,15 @@ public class ObjectDetailsGetterThread extends Thread {
     private void checkInEachQuarterHorizontal(Mat src, int i, int QuarterRow, int QuarterCol, int hint) {
 
         // x is  for shifting to  the next quarter horizontally
-        int x = i++;
+        i++;
+        final int xHorizontally = i;
         int finalI = i;
         if (hint == Global.FIRST_POSITION_HINT) {
             observableGetFirstXY = Observable.create(new ObservableOnSubscribe<Integer[]>() {
                 @Override
                 public void subscribe(ObservableEmitter<Integer[]> emitter) throws Exception {
                     if(objectCoordinateGetters[finalI] != null)
-                    emitter.onNext(objectCoordinateGetters[finalI].getFirstXY(src, QuarterRow, QuarterCol * x));
+                    emitter.onNext(objectCoordinateGetters[finalI].getFirstXY(src, QuarterRow, QuarterCol * xHorizontally));
                 }
             });
             observeFirstobjectPosition();
@@ -236,7 +241,7 @@ public class ObjectDetailsGetterThread extends Thread {
             observableGetLastXY = Observable.create(new ObservableOnSubscribe<Integer[]>() {
                 @Override
                 public void subscribe(ObservableEmitter<Integer[]> emitter) throws Exception {
-                    emitter.onNext(objectCoordinateGetters[finalI].getLastXY(src, QuarterRow, QuarterCol / x));
+                    emitter.onNext(objectCoordinateGetters[finalI].getLastXY(src, QuarterRow, QuarterCol / xHorizontally));
                 }
             });
             observeLastobjectPosition();
