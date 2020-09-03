@@ -1,23 +1,42 @@
 package com.maiajam.myflowres.adapters;
 
-import android.view.View;
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.maiajam.myflowres.R;
+import com.maiajam.myflowres.data.modle.Flower;
+import com.maiajam.myflowres.databinding.ItemFlowersBinding;
+
+import java.util.List;
 
 public class AllFlowersAdapter extends RecyclerView.Adapter<AllFlowersAdapter.AllFlowersHolder> {
 
 
+    List<Flower> allFlowerList ;
+    Context mContext;
+
+    public AllFlowersAdapter(List<Flower> allFlowerList,Context context) {
+        this.allFlowerList = allFlowerList;
+        this.mContext = context ;
+    }
+
     @NonNull
     @Override
     public AllFlowersHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        ItemFlowersBinding itemFlowersBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext),R.layout.item_flowers,parent,false);
+        return new AllFlowersHolder(itemFlowersBinding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull AllFlowersHolder holder, int position) {
 
+        Flower flower = allFlowerList.get(position);
+        holder.bindingItems(flower);
     }
 
     @Override
@@ -27,8 +46,16 @@ public class AllFlowersAdapter extends RecyclerView.Adapter<AllFlowersAdapter.Al
 
     class AllFlowersHolder extends RecyclerView.ViewHolder{
 
-        public AllFlowersHolder(@NonNull View itemView) {
-            super(itemView);
+        private final ItemFlowersBinding itemFlowersBinding;
+
+        AllFlowersHolder(ItemFlowersBinding itemBinding) {
+            super(itemBinding.getRoot());
+            this.itemFlowersBinding = itemBinding;
+        }
+
+        private void bindingItems(Flower itemView) {
+
+            itemFlowersBinding.plantName.setText(itemView.getFlowerName());
         }
     }
 }
