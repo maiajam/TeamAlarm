@@ -9,7 +9,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.maiajam.myflowres.R;
-import com.maiajam.myflowres.data.modle.Flower;
+import com.maiajam.myflowres.data.modle.allFlowers.AllFlower;
 import com.maiajam.myflowres.databinding.ItemFlowersBinding;
 
 import java.util.List;
@@ -17,10 +17,10 @@ import java.util.List;
 public class AllFlowersAdapter extends RecyclerView.Adapter<AllFlowersAdapter.AllFlowersHolder> {
 
 
-    List<Flower> allFlowerList ;
+    List<AllFlower> allFlowerList ;
     Context mContext;
 
-    public AllFlowersAdapter(List<Flower> allFlowerList,Context context) {
+    public AllFlowersAdapter(List<AllFlower> allFlowerList, Context context) {
         this.allFlowerList = allFlowerList;
         this.mContext = context ;
     }
@@ -35,7 +35,7 @@ public class AllFlowersAdapter extends RecyclerView.Adapter<AllFlowersAdapter.Al
     @Override
     public void onBindViewHolder(@NonNull AllFlowersHolder holder, int position) {
 
-        Flower flower = allFlowerList.get(position);
+        AllFlower flower = allFlowerList.get(position);
         holder.bindingItems(flower);
     }
 
@@ -53,9 +53,8 @@ public class AllFlowersAdapter extends RecyclerView.Adapter<AllFlowersAdapter.Al
             this.itemFlowersBinding = itemBinding;
         }
 
-        private void bindingItems(Flower itemView) {
-
-            itemFlowersBinding.plantName.setText(itemView.getFlowerName());
+        private void bindingItems(AllFlower itemView) {
+            itemFlowersBinding.username.setText(itemView.getUser().getFirstName());
         }
     }
 }

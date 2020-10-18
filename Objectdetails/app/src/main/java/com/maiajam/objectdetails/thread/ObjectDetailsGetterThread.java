@@ -114,7 +114,7 @@ public class ObjectDetailsGetterThread extends Thread {
     public Mat getobject(Mat matRgb) {
         Mat bgdModel = new Mat(), fgdModel = new Mat();
         Rect rec;
-        Mat mask = new Mat(matRgb.size(), CV_8U, new Scalar(255, 255, 255));//cv::Mat::ones(src.size(), CV_8U) * cv::GC_PR_BGD;
+        Mat mask = new Mat(matRgb.size(), CV_8U, new Scalar(255, 255, 255));//
         Mat newmask = new Mat();
         Mat object = new Mat();
         float margin = (float) .05;

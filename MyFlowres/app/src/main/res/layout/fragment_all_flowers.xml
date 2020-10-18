@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="ui.fragments.AllFLowersFragment">
 
     <data>
 
@@ -9,17 +11,51 @@
             type="com.maiajam.myflowres.ui.viewmodle.AllFlowersViewModle" />
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/AllFlowers_Rec"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:forceDarkAllowed=""/>
-    </LinearLayout>
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_flowers" />
+
+        <ProgressBar
+            android:id="@+id/AllFlowers_PrgreesBar_Loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/AllFlowers_TextView_Error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/AllFlowers_Button_Retry"
+            android:layout_centerInParent="true"
+            android:text="@string/text_retry"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/AllFlowers_Button_Retry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/label_button_retry"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/AllFlowers_TextView_Empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/AllFlowers_Button_Retry"
+            android:layout_centerInParent="true"
+            android:text="@string/text_Empty"
+            android:visibility="gone" />
+    </RelativeLayout>
 
 
 </layout>
