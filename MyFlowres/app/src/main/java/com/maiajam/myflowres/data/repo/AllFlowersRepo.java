@@ -48,28 +48,8 @@ public class AllFlowersRepo {
                 .observeOn((Schedulers.io()))
                 .subscribeOn(AndroidSchedulers.mainThread());
 
-        allFlowersObservable.subscribeWith(new Observer<List<AllFlower>>() {
-            @Override
-            public void onSubscribe(Disposable d) {
-                Log.d("obserMaiD", d.toString());
-            }
-
-            @Override
-            public void onNext(List<AllFlower> allFlowers) {
-                listMutableLiveData.setValue(allFlowers);
-                Log.d("obserMaiD", "done");
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                Log.d("obserMaiD", "error");
-            }
-
-            @Override
-            public void onComplete() {
-                Log.d("obserMaiD", "complete");
-            }
-        });
+        allFlowersObservable.subscribe(o->listMutableLiveData.setValue(o),
+                error-> Log.d("mai", "fetchAllFlowersPhotos: ."+error.getMessage().toString()));
     }
 
 }
